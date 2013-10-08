@@ -70,6 +70,12 @@ func NewAPI(url string) (api *API) {
 	return &API{url: url, c: http.Client{}}
 }
 
+// Allow override of the transport
+// e.g. to allow InsecureSkipVerify
+func (api *API) SetTransport(tr *http.Transport) {
+	api.c.Transport = tr
+}
+
 func (api *API) printf(format string, v ...interface{}) {
 	if api.Logger != nil {
 		api.Logger.Printf(format, v...)
