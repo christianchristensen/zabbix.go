@@ -101,6 +101,7 @@ func (api *API) callBytes(method string, params interface{}) (b []byte, err erro
 
 	res, err := api.c.Do(req)
 	if err != nil {
+		api.printf("Error: %s", err.Error())
 		return
 	}
 	defer res.Body.Close()
