@@ -70,10 +70,10 @@ func NewAPI(url string) (api *API) {
 	return &API{url: url, c: http.Client{}}
 }
 
-// Allow override of the transport
-// e.g. to allow InsecureSkipVerify
-func (api *API) SetTransport(tr *http.Transport) {
-	api.c.Transport = tr
+// Allow override of the API client
+// e.g. to allow api.c.Transport TLSClientConfig InsecureSkipVerify
+func (api *API) SetClient(c http.Client) {
+	api.c = c
 }
 
 func (api *API) printf(format string, v ...interface{}) {
